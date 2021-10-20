@@ -1,0 +1,17 @@
+{
+  "name": "burger-palace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "css": "node-sass --include-path scss scss/index.scss css/style.css",
+    "watch": "nodemon -e scss -x npm run css"
+  },
+  "keywords": [],
+  "author": "james",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^6.0.1",
+    "nodemon": "^2.0.14"
+  }
+}
