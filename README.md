@@ -5,7 +5,7 @@ Rain or shine, its time to dine from your favourite burger place.
 We cook & deliver the tastiest burgers  right away to your designated location.
 
 ## Demo
-[Here]() is the link to the demo.
+[Here](james-muriithi.github.io/burger-palace) is the link to the demo.
 
 ## Technologies Used
 1. HTML
