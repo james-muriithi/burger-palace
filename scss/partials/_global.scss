@@ -28,8 +28,11 @@ html {
 .section-title{
     font-weight: 900;
     font-size: 30px;
-    span{
+    >span{
         padding-bottom: 4px;
         border-bottom: 8px solid map-get($colors, "secondary");
+        span.yellow{
+            color: map-get($colors, "primary" );
+        }
     }
 }

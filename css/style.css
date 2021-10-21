@@ -21,9 +21,11 @@ html {
 .section-title {
   font-weight: 900;
   font-size: 30px; }
-  .section-title span {
+  .section-title > span {
     padding-bottom: 4px;
     border-bottom: 8px solid #fa9529; }
+    .section-title > span span.yellow {
+      color: #ffc12b; }
 
 /* Navbar */
 .navbar {
@@ -40,8 +42,8 @@ html {
     .navbar .cart-tyles span, .navbar .cart span, .navbar .nav-item:last-child span {
       position: relative; }
     .navbar .cart-tyles img, .navbar .cart img, .navbar .nav-item:last-child img {
-      width: 30px;
-      height: 30px; }
+      width: 28px;
+      height: 28px; }
     .navbar .cart-tyles .cart-counter, .navbar .cart .cart-counter, .navbar .nav-item:last-child .cart-counter {
       background-color: #ff6d21;
       border-radius: 50%;
@@ -127,6 +129,7 @@ html {
       height: 80%;
       left: -30px; }
 
+/* Services */
 #services {
   background: #fafafa !important; }
   #services .service-card {
@@ -136,3 +139,7 @@ html {
       color: #333333;
       font-size: 19px;
       line-height: 28px; }
+
+#menu .menu-card {
+  border: 1px solid #b3b3b3;
+  border-radius: 15px; }
