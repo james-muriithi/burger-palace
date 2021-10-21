@@ -16,5 +16,10 @@ footer {
     }
     .lower-section {
         color: lighten($black, 40%);
+        font-size: 14px;
+        .socials img{
+            cursor: pointer;
+            height: 15px;
+        }
     }
 }
