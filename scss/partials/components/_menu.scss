@@ -6,6 +6,22 @@
         box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
         transition: all 0.2s linear;
         border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+
+        .menu-image{
+            padding-top: 20px;
+        }
+
+        .ribbon{
+            background-color: map-get($colors, "dark-primary");
+            color: $white;
+            position: absolute;
+            width: 100%;
+            right: 0;
+            padding: 10px;
+            transform: rotateZ(40deg) translate(27%, -180%);
+        }
         .menu-description {
             color: lighten($black, 20%);
             font-size: 17px;

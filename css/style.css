@@ -144,7 +144,19 @@ html {
 #menu .menu-card {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   transition: all 0.2s linear;
-  border-radius: 20px; }
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden; }
+  #menu .menu-card .menu-image {
+    padding-top: 20px; }
+  #menu .menu-card .ribbon {
+    background-color: #ff6d21;
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    right: 0;
+    padding: 10px;
+    transform: rotateZ(40deg) translate(27%, -180%); }
   #menu .menu-card .menu-description {
     color: #333333;
     font-size: 17px;
