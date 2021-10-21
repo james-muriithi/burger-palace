@@ -1,0 +1,18 @@
+/* Download Section */ 
+#download {
+    background-color: #f6b400;
+    .section-title {
+        font-weight: 900;
+        color: $black;
+        font-size: 33px;
+    }
+    .download-buttons {
+        padding-top: 20px;
+        a {
+            padding-right: 10px;
+            img {
+                height: 42px;
+            }
+        }
+    }
+}

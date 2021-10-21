@@ -184,6 +184,7 @@ html {
       #menu .menu-card .add-to-cart:hover input {
         background-color: #d8e5de; }
 
+/* Offers Section */
 #offers {
   background: #fafafa !important; }
   #offers .offer-title {
@@ -205,3 +206,17 @@ html {
     margin: 0 10px; }
     #offers .indicators .indicator.active {
       background-color: #fa9529; }
+
+/* Download Section */
+#download {
+  background-color: #f6b400; }
+  #download .section-title, #download #offers .offer-title, #offers #download .offer-title {
+    font-weight: 900;
+    color: #000;
+    font-size: 33px; }
+  #download .download-buttons {
+    padding-top: 20px; }
+    #download .download-buttons a {
+      padding-right: 10px; }
+      #download .download-buttons a img {
+        height: 42px; }
