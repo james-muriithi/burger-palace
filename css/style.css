@@ -129,3 +129,10 @@ html {
 
 #services {
   background: #fafafa !important; }
+  #services .service-card {
+    border: 1px solid #b3b3b3;
+    border-radius: 15px; }
+    #services .service-card .card-description {
+      color: #333333;
+      font-size: 19px;
+      line-height: 28px; }

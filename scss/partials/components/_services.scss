@@ -1,3 +1,12 @@
 #services{
     background: lighten($black, 98%) !important;
+    .service-card{
+        border: 1px solid lighten($black, 70%);
+        border-radius: 15px;
+        .card-description{
+            color: lighten($black, 20%);
+            font-size: 19px;
+            line-height: 28px;
+        }
+    }
 }
