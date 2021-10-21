@@ -1,0 +1,12 @@
+body,
+html {
+    font-family: $font-family;
+    background: $background-color;
+    height: 100%;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

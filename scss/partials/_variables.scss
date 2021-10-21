@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400&display=swap");
+
+$background-color: #fefefe;
+$font-family: Roboto, "serif";
+$black: #000;
+$white: #fff;
+$nav-item-color: $black;
+$colors: (
+    primary: #ffc12b,
+    secondary: #fa9529,
+    dark-primary: #ff6d21,
+);
+
+$breakpoints: (
+    xxl: 1400px,
+    xl: 1200px,
+    lg: 992px,
+    md: 768px,
+    sm: 576px,
+);

@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400&display=swap");
+body,
+html {
+  font-family: Roboto, "serif";
+  background: #fefefe;
+  height: 100%; }
+
+.center, .navbar .nav-item:last-child #cart-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.navbar {
+  padding-top: 16px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1; }
+  .navbar .navbar-brand img {
+    height: 50px; }
+  .navbar .navbar-toggler:active, .navbar .navbar-toggler:focus {
+    box-shadow: none; }
+  .navbar .nav-item {
+    padding: 0 25px; }
+    @media screen and (min-width: 1400px) {
+      .navbar .nav-item {
+        padding: 0 50px; } }
+    .navbar .nav-item a.nav-link {
+      color: #333333 !important;
+      font-weight: 500;
+      font-size: 20px; }
+      .navbar .nav-item a.nav-link span {
+        padding-bottom: 5px; }
+      .navbar .nav-item a.nav-link.active {
+        color: #000 !important; }
+        .navbar .nav-item a.nav-link.active span {
+          border-bottom: 7px solid #fa9529; }
+    .navbar .nav-item:last-child {
+      padding-left: 30px;
+      display: flex;
+      align-items: center; }
+      .navbar .nav-item:last-child span {
+        position: relative; }
+      .navbar .nav-item:last-child img {
+        width: 30px;
+        height: 30px; }
+      .navbar .nav-item:last-child #cart-counter {
+        background-color: #ff6d21;
+        border-radius: 50%;
+        font-size: 11px;
+        height: 20px;
+        width: 20px;
+        box-sizing: border-box;
+        color: #fff;
+        position: absolute;
+        right: -12px;
+        top: -5px; }
+
+.banner .left-section .catch-phrase {
+  font-size: 55px;
+  font-weight: 900; }
+
+.banner .right-section {
+  overflow: hidden; }
+  .banner .right-section .yellow-bg {
+    background-color: #ffc12b;
+    transform: skewX(-10deg) translateX(100px);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 150%; }
+    .banner .right-section .yellow-bg .burger-explode {
+      position: absolute;
+      transform: skewX(10deg);
+      bottom: -10px;
+      height: 80%;
+      left: -30px; }

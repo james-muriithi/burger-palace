@@ -1,0 +1,28 @@
+.banner{
+    .left-section{
+        .catch-phrase{
+            font-size: 55px;
+            font-weight: 900;
+        }
+    }
+    .right-section{
+        overflow: hidden;
+        .yellow-bg{
+            background-color: map-get($colors, "primary");
+            transform: skewX(-10deg) translateX(100px);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 150%;
+
+            .burger-explode{
+                position: absolute;
+                transform: skewX(10deg);
+                bottom: -10px;
+                height: 80%;
+                left: -30px;
+            }
+
+        }
+    }
+}
