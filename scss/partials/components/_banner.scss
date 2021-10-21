@@ -2,7 +2,7 @@
 .banner {
     .left-section {
         .catch-phrase {
-            font-size: 45px;
+            font-size: 40px;
             font-weight: 900;
             @media screen and (min-width: map-get($breakpoints, "xl" )) {
                 font-size: 50px;
@@ -11,9 +11,9 @@
         }
         .description {
             color: lighten($black, 36%);
-            font-size: 25px;
+            font-size: 20px;
             @media screen and (min-width: map-get($breakpoints, "xl" )) {
-                font-size: 30px;
+                font-size: 23px;
             }
         }
         .order-now {

@@ -18,6 +18,13 @@ html {
   .bg-lg-transparent {
     background-color: transparent !important; } }
 
+.section-title {
+  font-weight: 900;
+  font-size: 30px; }
+  .section-title span {
+    padding-bottom: 4px;
+    border-bottom: 8px solid #fa9529; }
+
 /* Navbar */
 .navbar {
   padding-top: 16px;
@@ -28,7 +35,8 @@ html {
   z-index: 1; }
   .navbar .cart-tyles, .navbar .cart, .navbar .nav-item:last-child {
     display: flex;
-    align-items: center; }
+    align-items: center;
+    cursor: pointer; }
     .navbar .cart-tyles span, .navbar .cart span, .navbar .nav-item:last-child span {
       position: relative; }
     .navbar .cart-tyles img, .navbar .cart img, .navbar .nav-item:last-child img {
@@ -79,7 +87,7 @@ html {
 
 /* Banner Section */
 .banner .left-section .catch-phrase {
-  font-size: 45px;
+  font-size: 40px;
   font-weight: 900; }
   @media screen and (min-width: 1200px) {
     .banner .left-section .catch-phrase {
@@ -88,10 +96,10 @@ html {
 
 .banner .left-section .description {
   color: #5c5c5c;
-  font-size: 25px; }
+  font-size: 20px; }
   @media screen and (min-width: 1200px) {
     .banner .left-section .description {
-      font-size: 30px; } }
+      font-size: 23px; } }
 
 .banner .left-section .order-now {
   position: absolute;
@@ -118,3 +126,6 @@ html {
       bottom: -10px;
       height: 80%;
       left: -30px; }
+
+#services {
+  background: #fafafa !important; }

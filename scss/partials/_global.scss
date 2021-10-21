@@ -24,3 +24,12 @@ html {
         background-color: transparent !important;
     }
 }
+
+.section-title{
+    font-weight: 900;
+    font-size: 30px;
+    span{
+        padding-bottom: 4px;
+        border-bottom: 8px solid map-get($colors, "secondary");
+    }
+}
