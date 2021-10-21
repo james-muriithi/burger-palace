@@ -1,13 +1,35 @@
-.banner{
-    .left-section{
-        .catch-phrase{
-            font-size: 55px;
+.banner {
+    .left-section {
+        .catch-phrase {
+            font-size: 45px;
             font-weight: 900;
+            @media screen and (min-width: map-get($breakpoints, "xl" )) {
+                font-size: 50px;
+                max-width: 60%;
+            }
+        }
+        .description {
+            color: lighten($black, 36%);
+            font-size: 25px;
+            @media screen and (min-width: map-get($breakpoints, "xl" )) {
+                font-size: 30px;
+            }
+        }
+        .order-now {
+            position: absolute;
+            bottom: 10%;
+            left: 5%;
+            button {
+                background-color: map-get($colors, "secondary");
+                color: $white;
+                padding: 12px 30px;
+                border-radius: 50px 50px 0 50px;
+            }
         }
     }
-    .right-section{
+    .right-section {
         overflow: hidden;
-        .yellow-bg{
+        .yellow-bg {
             background-color: map-get($colors, "primary");
             transform: skewX(-10deg) translateX(100px);
             position: absolute;
@@ -15,14 +37,13 @@
             bottom: 0;
             width: 150%;
 
-            .burger-explode{
+            .burger-explode {
                 position: absolute;
                 transform: skewX(10deg);
                 bottom: -10px;
                 height: 80%;
                 left: -30px;
             }
-
         }
     }
 }

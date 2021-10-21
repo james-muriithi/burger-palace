@@ -1,6 +1,44 @@
 .navbar {
+    .cart-tyles {
+        display: flex;
+        align-items: center;
+        span {
+            position: relative;
+        }
+        img {
+            width: 30px;
+            height: 30px;
+        }
+        .cart-counter {
+            background-color: map-get($colors, "dark-primary");
+            border-radius: 50%;
+            font-size: 11px;
+            height: 20px;
+            width: 20px;
+            @extend .center;
+            box-sizing: border-box;
+            color: $white;
+            position: absolute;
+            right: -10px;
+            top: -5px;
+        }
+    }
+    .cart {
+        @extend .cart-tyles;
+        img {
+            width: 25px;
+            height: 25px;
+        }
+        .cart-counter {
+            height: 18px;
+            width: 18px;
+            right: -8px;
+            top: -3px;
+        }
+        padding-right: 5px;
+    }
     padding-top: 16px;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     left: 0;
@@ -35,30 +73,9 @@
                 }
             }
         }
-        &:last-child{
+        &:last-child {
+            @extend .cart-tyles;
             padding-left: 30px;
-            display: flex;
-            align-items: center;
-            span{
-                position: relative;
-            }
-            img{
-                width: 30px;
-                height: 30px;
-            }
-            #cart-counter{
-                background-color: map-get($colors, "dark-primary");
-                border-radius: 50%;
-                font-size: 11px;
-                height: 20px;
-                width: 20px;
-                @extend .center;
-                box-sizing: border-box;
-                color: $white;
-                position: absolute;
-                right: -12px;
-                top: -5px;
-            }
         }
     }
 }

@@ -10,3 +10,16 @@ html {
     align-items: center;
     justify-content: center;
 }
+
+.btn {
+    &:active,
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+.bg-lg-transparent {
+    @media screen and (min-width: map-get($breakpoints, "lg" )) {
+        background-color: transparent !important;
+    }
+}
