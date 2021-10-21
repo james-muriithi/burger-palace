@@ -49,9 +49,6 @@
                 text-align: center;
                 border: none;
                 background-color: $add-to-cart;
-                &:focus {
-                    outline: none;
-                }
             }
             &:hover {
                 background-color: darken($add-to-cart, 3%);

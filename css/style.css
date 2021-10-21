@@ -14,9 +14,17 @@ html {
 .btn:active, .btn:focus {
   box-shadow: none; }
 
+input:active, input:focus {
+  outline: none !important;
+  box-shadow: none !important; }
+
 @media screen and (min-width: 992px) {
   .bg-lg-transparent {
     background-color: transparent !important; } }
+
+@media screen and (min-width: 768px) {
+  .text-md-right {
+    text-align: right; } }
 
 .section-title, #offers .offer-title {
   font-weight: 900;
@@ -177,8 +185,6 @@ html {
       text-align: center;
       border: none;
       background-color: #E1EBE6; }
-      #menu .menu-card .add-to-cart input:focus {
-        outline: none; }
     #menu .menu-card .add-to-cart:hover {
       background-color: #d8e5de; }
       #menu .menu-card .add-to-cart:hover input {
@@ -220,3 +226,18 @@ html {
       padding-right: 10px; }
       #download .download-buttons a img {
         height: 42px; }
+
+/* Footer */
+footer .contact a {
+  display: block;
+  text-decoration: none;
+  color: #666666; }
+  footer .contact a:hover {
+    color: #000; }
+
+footer #subscribe {
+  background-color: #ffc12b;
+  color: #fafafa; }
+
+footer .lower-section {
+  color: #666666; }

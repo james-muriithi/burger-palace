@@ -1,0 +1,20 @@
+/* Footer */
+footer {
+    .contact {
+        a {
+            display: block;
+            text-decoration: none;
+            color: lighten($black, 40%);
+            &:hover {
+                color: $black;
+            }
+        }
+    }
+    #subscribe {
+        background-color: map-get($colors, "primary");
+        color: darken($white, 2%);
+    }
+    .lower-section {
+        color: lighten($black, 40%);
+    }
+}
