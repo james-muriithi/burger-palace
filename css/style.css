@@ -140,6 +140,34 @@ html {
       font-size: 19px;
       line-height: 28px; }
 
+/* Menu Section */
 #menu .menu-card {
-  border: 1px solid #b3b3b3;
-  border-radius: 15px; }
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  transition: all 0.2s linear;
+  border-radius: 20px; }
+  #menu .menu-card .menu-description {
+    color: #333333;
+    font-size: 17px;
+    line-height: 26px; }
+  #menu .menu-card:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; }
+  #menu .menu-card .add-to-cart {
+    background-color: #E1EBE6;
+    border-radius: 10px;
+    min-height: 55px; }
+    #menu .menu-card .add-to-cart button {
+      font-size: 20px;
+      color: #5d9676; }
+      #menu .menu-card .add-to-cart button img {
+        height: 25px; }
+    #menu .menu-card .add-to-cart input {
+      max-width: 50px;
+      text-align: center;
+      border: none;
+      background-color: #E1EBE6; }
+      #menu .menu-card .add-to-cart input:focus {
+        outline: none; }
+    #menu .menu-card .add-to-cart:hover {
+      background-color: #d8e5de; }
+      #menu .menu-card .add-to-cart:hover input {
+        background-color: #d8e5de; }

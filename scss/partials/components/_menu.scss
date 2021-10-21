@@ -1,6 +1,48 @@
-#menu{
-    .menu-card{
-        border: 1px solid lighten($black, 70%);
-        border-radius: 15px;
+/* Menu Section */
+#menu {
+    .menu-card {
+        // border: 1px solid lighten($black, 70%);
+        // box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        transition: all 0.2s linear;
+        border-radius: 20px;
+        .menu-description {
+            color: lighten($black, 20%);
+            font-size: 17px;
+            line-height: 26px;
+        }
+
+        &:hover {
+            // box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        .add-to-cart {
+            background-color: $add-to-cart;
+            border-radius: 10px;
+            min-height: 55px;
+            button {
+                font-size: 20px;
+                color: #5d9676;
+                img {
+                    height: 25px;
+                }
+            }
+            input {
+                max-width: 50px;
+                text-align: center;
+                border: none;
+                background-color: $add-to-cart;
+                &:focus {
+                    outline: none;
+                }
+            }
+            &:hover {
+                background-color: darken($add-to-cart, 3%);
+                input {
+                    background-color: darken($add-to-cart, 3%);
+                }
+            }
+        }
     }
 }
