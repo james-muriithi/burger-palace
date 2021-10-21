@@ -18,13 +18,13 @@ html {
   .bg-lg-transparent {
     background-color: transparent !important; } }
 
-.section-title {
+.section-title, #offers .offer-title {
   font-weight: 900;
   font-size: 30px; }
-  .section-title > span {
+  .section-title > span, #offers .offer-title > span {
     padding-bottom: 4px;
     border-bottom: 8px solid #fa9529; }
-    .section-title > span span.yellow {
+    .section-title > span span.yellow, #offers .offer-title > span span.yellow {
       color: #ffc12b; }
 
 /* Navbar */
@@ -183,3 +183,25 @@ html {
       background-color: #d8e5de; }
       #menu .menu-card .add-to-cart:hover input {
         background-color: #d8e5de; }
+
+#offers {
+  background: #fafafa !important; }
+  #offers .offer-title {
+    font-size: 55px; }
+    #offers .offer-title > span {
+      border-bottom: none; }
+      #offers .offer-title > span.yellow-text {
+        color: #fa9529; }
+  #offers .description {
+    color: #615757;
+    font-size: 20px; }
+  #offers .offer-image {
+    width: 660px; }
+  #offers .indicators .indicator {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #c4c4c4;
+    margin: 0 10px; }
+    #offers .indicators .indicator.active {
+      background-color: #fa9529; }
