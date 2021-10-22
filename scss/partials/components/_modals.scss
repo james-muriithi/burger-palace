@@ -1,0 +1,25 @@
+#crust-toppings-modal {
+    .sizes {
+        .burger-size:checked + .size {
+            background-color: $add-to-cart;
+            // &.size-card {
+            //     // box-shadow: none;
+            // }
+        }
+        .size {
+            cursor: pointer;
+            border-radius: 10px;
+            @include transition;
+            &.size-card {
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+            }
+            @media screen and (max-width: map-get($breakpoints, "lg")) {
+                font-size: 13px !important;
+            }
+        }
+        img {
+            height: 100px;
+            width: 100px;
+        }
+    }
+}

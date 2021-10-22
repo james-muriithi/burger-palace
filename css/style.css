@@ -30,6 +30,9 @@ input:active, input:focus {
     .section-title > span span.yellow, #offers .offer-title > span span.yellow {
       color: #ffc12b; }
 
+.btn--primary {
+  background-color: #ffc12b; }
+
 /* Navbar */
 .navbar {
   -webkit-transition: all 0.5s ease;
@@ -247,3 +250,23 @@ footer .lower-section {
   footer .lower-section .socials img {
     cursor: pointer;
     height: 15px; }
+
+#crust-toppings-modal .sizes .burger-size:checked + .size {
+  background-color: #E1EBE6; }
+
+#crust-toppings-modal .sizes .size {
+  cursor: pointer;
+  border-radius: 10px;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease; }
+  #crust-toppings-modal .sizes .size.size-card {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; }
+  @media screen and (max-width: 992px) {
+    #crust-toppings-modal .sizes .size {
+      font-size: 13px !important; } }
+
+#crust-toppings-modal .sizes img {
+  height: 100px;
+  width: 100px; }

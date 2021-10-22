@@ -126,7 +126,7 @@ $(function () {
             </div>
             <div class="col-6 d-flex">
                 <span class="add-to-cart d-flex align-items-center ms-auto">
-                    <button class="btn" title="add to cart">
+                    <button class="btn" title="add to cart" data-bs-toggle="modal" data-bs-target="#crust-toppings-modal">
                         <img src="./images/shopping-cart.png" alt="cart">
                     </button>
                 </span>
@@ -136,7 +136,35 @@ $(function () {
 </div>`);
   });
 
-  console.log(toppings[0].getPrice("medium"));
+  // append burger sizes
+
+  $(".sizes").html("");
+  burgerSizes.forEach(({ size, price }) => {
+    $(".sizes").append(`<div class="col-md-6 col-lg-3 col-6">
+      <input id="size-small" value="small" hidden type="radio" class="burger-size">
+      <div class="size size-card px-1 py-2">
+          <div class="text-center pt-2">
+              <img src="./images/ion_fast-food.png" alt="" height="30" class="img-fluid">
+          </div>
+          <div class="row pt-3">
+              <div class="col-6 text-center">
+                  <h6 class="text-capitalize">${size}</h6>
+              </div>
+              <div class="col-6 fw-bold text-center">
+                  Ksh. ${price}
+              </div>
+          </div>
+      </div>
+    </div>`);
+  });
+
+  // select burger size
+  $("body").on("click", ".size-card", function () {
+    // uncheck all sizes first
+    $("input.burger-size").prop("checked", false);
+    const sizeCheckbox = $(this).prev();
+    sizeCheckbox.prop("checked", !sizeCheckbox.prop("checked"));
+  });
 
   //   toggle header background on scroll
   $(document).on("scroll", function (e) {
