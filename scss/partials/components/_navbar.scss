@@ -1,5 +1,6 @@
 /* Navbar */
 .navbar {
+    @include transition;
     .cart-tyles {
         display: flex;
         align-items: center;
@@ -17,7 +18,7 @@
             font-size: 11px;
             height: 20px;
             width: 20px;
-            @extend .center;
+            @include center;
             box-sizing: border-box;
             color: $white;
             position: absolute;

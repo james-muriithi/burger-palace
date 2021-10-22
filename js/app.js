@@ -112,4 +112,15 @@ $(function () {
     </div>
 </div>`);
   });
+  
+
+  //   toggle header background on scroll
+  $(document).on("scroll", function (e) {
+    const scrolledHeight = $(this).scrollTop();
+    if (scrolledHeight > 250) {
+      $("nav.navbar").removeClass("bg-transparent").addClass("bg-white");
+    } else {
+      $("nav.navbar").removeClass("bg-white").addClass("bg-transparent");
+    }
+  });
 });

@@ -6,11 +6,6 @@ html {
   background: #fefefe;
   height: 100%; }
 
-.center, .navbar .cart-tyles .cart-counter, .navbar .cart .cart-counter, .navbar .nav-item:last-child .cart-counter {
-  display: flex;
-  align-items: center;
-  justify-content: center; }
-
 .btn:active, .btn:focus {
   box-shadow: none; }
 
@@ -37,6 +32,10 @@ input:active, input:focus {
 
 /* Navbar */
 .navbar {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
   padding-top: 16px;
   position: fixed;
   top: 0;
@@ -58,6 +57,9 @@ input:active, input:focus {
       font-size: 11px;
       height: 20px;
       width: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       box-sizing: border-box;
       color: #fff;
       position: absolute;
