@@ -121,9 +121,7 @@ $(function () {
             </p>
         </div>
         <div class="price-cart d-flex mt-5 align-items-center">
-            <div class="col-6 price fw-bold">
-                Ksh. <span>1200</span>
-            </div>
+            <div class="col-6 price fw-bold"></div>
             <div class="col-6 d-flex">
                 <span class="add-to-cart d-flex align-items-center ms-auto">
                     <button class="btn" title="add to cart" data-bs-toggle="modal" data-bs-target="#crust-toppings-modal">
@@ -148,7 +146,7 @@ $(function () {
           </div>
           <div class="row pt-3">
               <div class="col-6 text-center">
-                  <h6 class="text-capitalize">${size}</h6>
+                  <small class="text-capitalize">${size}</small>
               </div>
               <div class="col-6 fw-bold text-center">
                   Ksh. ${price}
