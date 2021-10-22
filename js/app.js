@@ -6,27 +6,50 @@ function Burger(name, image, newBurger = false) {
   this.price = 0;
   this.image = image;
   this.toppings = [];
-  this.crust = null;
   this.newBurger = newBurger;
 }
 
+// burger methods
+
+Burger.prototype.setSize = function (size) {
+  if (burgerSizes.some((s) => (s.size = size))) {
+    this.size = size;
+  }
+};
+
+function Topping(id, name) {
+  this.id = id;
+  this.name = name;
+  this.prices = [
+    {
+      size: "small",
+      price: 50,
+    },
+    {
+      size: "medium",
+      price: 80,
+    },
+    {
+      size: "large",
+      price: 100,
+    },
+  ];
+}
+
+Topping.prototype.getPrice = function (size) {
+  const price = this.prices.find((sizePrice) => sizePrice.size == size);
+  if (price) {
+    return price.price;
+  } else {
+    return 0;
+  }
+};
+
 const toppings = [
-  {
-    id: 1,
-    name: "Bacon",
-  },
-  {
-    id: 2,
-    name: "Cheese",
-  },
-  {
-    id: 3,
-    name: "Mushrooms",
-  },
-  {
-    id: 4,
-    name: "Avocado",
-  },
+  new Topping(1, "Bacon"),
+  new Topping(2, "Cheese"),
+  new Topping(3, "Mushrooms"),
+  new Topping(4, "Avocado"),
 ];
 
 const crusts = [
@@ -112,7 +135,8 @@ $(function () {
     </div>
 </div>`);
   });
-  
+
+  console.log(toppings[0].getPrice("medium"));
 
   //   toggle header background on scroll
   $(document).on("scroll", function (e) {
