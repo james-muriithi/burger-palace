@@ -295,10 +295,15 @@ $(function () {
   $(".btn-add-to-cart").on("click", function () {
     if (selectedBurger.size && selectedBurger.crust) {
       cart.addItem(selectedBurger);
-      updateCartCount(cart.items.length);
+      updateCart(cart);
     } else {
       alert("Please choose the size and crust");
     }
+  });
+
+  // toggle show cart
+  $(".cart").on("click", function () {
+    $(".shopping-cart").toggleClass("d-none");
   });
 
   //   toggle header background on scroll
@@ -311,12 +316,37 @@ $(function () {
     }
   });
 
-  // update cart counter
-  updateCartCount(cart.items.length);
+  // update cart
+  updateCart(cart);
 });
 
 function updateCartCount(cartCount = 0) {
   $(".cart-counter").text(cartCount);
+}
+
+function updateCart(cart) {
+  $(".shopping-cart-items").html("");
+  cart.items.forEach((item) => {
+    $(".shopping-cart-items")
+      .append(`<li class="clearfix row align-items-center">
+        <div class="col-4">
+            <img src="${item.image}" alt="${item.name}" />
+        </div>
+        <div class="col-8 px-0">
+            <span class="item-name fw-bold">${item.name} (${
+      item.size.size
+    })</span>
+            <div><small>Crust: ${item.crust.name}</small></div>
+            <div><small>Toppings: ${item.toppings
+              .map((t) => t.name)
+              .join(", ")}</small></div>
+            <span class="item-price">Ksh ${item.price}</span> X
+            <span class="item-quantity">${item.quantity}</span>
+        </div>
+    </li>`);
+  });
+
+  updateCartCount(cart.items.length);
 }
 
 function appendToppings(size) {

@@ -61,7 +61,7 @@
                                     <span>Offers</span>
                                 </a>
                             </li>
-                            <li class="nav-item d-none d-lg-flex" title="cart">
+                            <li class="nav-item d-none d-lg-flex cart" title="cart">
                                 <span>
                                     <img src="./images/basket.png" alt="cart">
                                     <div class="cart-counter">
@@ -73,6 +73,32 @@
                     </div>
                 </div>
             </nav>
+
+            <div class="shopping-cart shadow d-none">
+                <div class="shopping-cart-header d-flex">
+
+                    <span class="cart d-flex">
+                        <span class="my-auto">
+                            <img src="./images/basket.png" alt="cart">
+                            <div class="cart-counter">
+                                2
+                            </div>
+                        </span>
+                    </span>
+
+                    <div class="shopping-cart-total ms-auto">
+                        <span class="lighter-text">Total:</span>
+                        <span class="main-color-text">Ksh. <span class="total">0</span></span>
+                    </div>
+                </div>
+                <!--end shopping-cart-header -->
+
+                <ul class="shopping-cart-items ps-0">
+
+                </ul>
+
+                <button class="btn btn-checkout w-100">Checkout</button>
+            </div>
 
             <div class="banner row h-100">
                 <div class="left-section col-lg-6 d-flex align-items-center position-relative px-md-4">
