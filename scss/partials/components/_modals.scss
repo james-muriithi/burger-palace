@@ -20,6 +20,10 @@
         img {
             height: 100px;
             width: 100px;
+            @media screen and (max-width: map-get($breakpoints, "md")) {
+                height: 50px;
+                width: 50px;
+            }
         }
     }
 }

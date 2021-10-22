@@ -88,7 +88,7 @@ const burgerSizes = [
 const burgers = [
   new Burger("Beef Burger", "./images/burger1.png", true),
   new Burger("Spicy Tandoori", "./images/burger2.png"),
-  new Burger("Chhese Burger", "./images/burger3.png"),
+  new Burger("Cheese Burger", "./images/burger3.png"),
   new Burger("Buffalo Burger", "./images/burger4.png"),
   new Burger("BBQ Chcken", "./images/burger5.png"),
   new Burger("Crispy Chicken", "./images/burger6.png"),
@@ -120,7 +120,7 @@ $(function () {
                 rbi viverra bibendum in sit. Ac semper arcu facilisis ornare
             </p>
         </div>
-        <div class="price-cart d-flex mt-5 align-items-center">
+        <div class="price-cart d-flex mt-3 mt-sm-5 align-items-center">
             <div class="col-6 price fw-bold"></div>
             <div class="col-6 d-flex">
                 <span class="add-to-cart d-flex align-items-center ms-auto">
@@ -138,17 +138,17 @@ $(function () {
 
   $(".sizes").html("");
   burgerSizes.forEach(({ size, price }) => {
-    $(".sizes").append(`<div class="col-md-6 col-lg-3 col-6">
+    $(".sizes").append(`<div class="col-md-6 col-lg-3 col-6 mb-3 mb-md-0">
       <input id="size-small" value="small" hidden type="radio" class="burger-size">
-      <div class="size size-card px-1 py-2">
+      <div class="size size-card p-1">
           <div class="text-center pt-2">
               <img src="./images/ion_fast-food.png" alt="" height="30" class="img-fluid">
           </div>
           <div class="row pt-3">
-              <div class="col-6 text-center">
+              <div class="col-5 text-center">
                   <small class="text-capitalize">${size}</small>
               </div>
-              <div class="col-6 fw-bold text-center">
+              <div class="col-7 fw-bold text-center">
                   Ksh. ${price}
               </div>
           </div>

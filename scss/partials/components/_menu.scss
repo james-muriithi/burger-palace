@@ -9,11 +9,14 @@
         position: relative;
         overflow: hidden;
 
-        .menu-image{
+        .menu-image {
             padding-top: 20px;
+            @media screen and (max-width: map-get($breakpoints, "sm")) {
+                max-height: 160px;
+            }
         }
 
-        .ribbon{
+        .ribbon {
             background-color: map-get($colors, "dark-primary");
             color: $white;
             position: absolute;
@@ -26,6 +29,10 @@
             color: lighten($black, 20%);
             font-size: 17px;
             line-height: 26px;
+            @media screen and (max-width: map-get($breakpoints, "sm")) {
+                font-size: 16px;
+                line-height: 24px;
+            }
         }
 
         &:hover {
@@ -36,12 +43,18 @@
         .add-to-cart {
             background-color: $add-to-cart;
             border-radius: 10px;
-            min-height: 55px;
+            min-height: 50px;
+            @media screen and (max-width: map-get($breakpoints, "sm")) {
+                min-height: 38px !important;
+            }
             button {
                 font-size: 20px;
                 color: #5d9676;
                 img {
                     height: 25px;
+                    @media screen and (max-width: map-get($breakpoints, "sm")) {
+                        height: 22px;
+                    }
                 }
             }
             input {
