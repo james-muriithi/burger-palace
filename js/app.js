@@ -52,6 +52,8 @@ Burger.prototype.calculatePrice = function () {
   this.price = price;
 };
 
+// Toppings
+
 function Topping(id, name) {
   this.id = id;
   this.name = name;
@@ -87,6 +89,7 @@ const toppings = [
   new Topping(4, "Avocado"),
 ];
 
+// burger crusts
 const crusts = [
   {
     id: 1,
@@ -105,6 +108,7 @@ const crusts = [
   },
 ];
 
+// burger toppings
 const burgerSizes = [
   {
     size: "small",
@@ -129,12 +133,46 @@ const burgers = [
   new Burger(6, "Crispy Chicken", "./images/burger6.png"),
 ];
 
+//  Cart functionality
+function Cart() {
+  this.items = [];
+  this.total = 0;
+  this.grand_total = 0;
+}
+
+Cart.prototype.addItem = function (burger) {
+  if (
+    this.items.some((item) => {
+      return this.isSameItem(item, burger);
+    })
+  ) {
+    this.items.map((item) => {
+      if (item.id == burger.id) {
+        item.quantity += 1;
+      }
+    });
+  } else {
+    let item = { ...burger, quantity: 1 };
+    this.items.push(item);
+  }
+  console.log(this.items);
+};
+
+Cart.prototype.isSameItem = function (item1, item2) {
+  const sameCrust = item1.crust.id == item2.crust.id;
+  const sameToppings =
+    JSON.stringify(item1.toppings.map((c) => c.id)) ==
+    JSON.stringify(item2.toppings.map((c) => c.id));
+  return item1.id == item2.id && sameCrust && sameToppings;
+};
+
 /**
  * Frontend logic
  */
 
 $(function () {
   let selectedBurger;
+  let cart = new Cart();
 
   // append burgers to menu
   $("#menu .menu").html("");
@@ -247,21 +285,20 @@ $(function () {
     const toppingCheckbox = $(this).prev();
     toppingCheckbox.prop("checked", !toppingCheckbox.prop("checked"));
     const selectedToppings = [];
-    $("input.burger-topping:checked").each(() => {
-      selectedToppings.push(
-        toppings.find(({ id }) => id == $(this).prev().val())
-      );
+    $("input.burger-topping:checked").each((_, element) => {
+      selectedToppings.push(toppings.find(({ id }) => id == $(element).val()));
     });
     selectedBurger.setToppings(selectedToppings);
   });
 
   // add to cart
   $(".btn-add-to-cart").on("click", function () {
-      if (selectedBurger.size && selectedBurger.crust) {
-          console.log(selectedBurger);
-      }else{
-          alert("Please choose the size and crust");
-      }
+    if (selectedBurger.size && selectedBurger.crust) {
+      cart.addItem(selectedBurger);
+      updateCartCount(cart.items.length);
+    } else {
+      alert("Please choose the size and crust");
+    }
   });
 
   //   toggle header background on scroll
@@ -273,7 +310,14 @@ $(function () {
       $("nav.navbar").removeClass("bg-white").addClass("bg-transparent");
     }
   });
+
+  // update cart counter
+  updateCartCount(cart.items.length);
 });
+
+function updateCartCount(cartCount = 0) {
+  $(".cart-counter").text(cartCount);
+}
 
 function appendToppings(size) {
   $(".burger--toppings").removeClass("d-none");
