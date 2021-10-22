@@ -1,7 +1,8 @@
 /**
  * Business Logic
  */
-function Burger(name, image, newBurger = false) {
+function Burger(id, name, image, newBurger = false) {
+  this.id = id;
   this.name = name;
   this.price = 0;
   this.image = image;
@@ -12,9 +13,43 @@ function Burger(name, image, newBurger = false) {
 // burger methods
 
 Burger.prototype.setSize = function (size) {
-  if (burgerSizes.some((s) => (s.size = size))) {
-    this.size = size;
+  const selectedSize = burgerSizes.find((s) => s.size == size);
+  if (selectedSize) {
+    this.size = selectedSize;
+    this.calculatePrice();
   }
+};
+
+Burger.prototype.setCrust = function (crustId) {
+  const selectedCrust = crusts.find(({ id }) => id == crustId);
+  if (selectedCrust) {
+    this.crust = selectedCrust;
+    this.calculatePrice();
+  }
+};
+
+Burger.prototype.setToppings = function (toppings) {
+  this.toppings = toppings;
+  this.calculatePrice();
+};
+
+Burger.prototype.calculatePrice = function () {
+  let price = 0;
+  if (this.size) {
+    price += this.size.price;
+  }
+
+  if (this.crust) {
+    price += this.crust.price;
+  }
+
+  if (this.toppings.length > 0) {
+    this.toppings.forEach((topping) => {
+      price += topping.price;
+    });
+  }
+
+  this.price = price;
 };
 
 function Topping(id, name) {
@@ -36,12 +71,12 @@ function Topping(id, name) {
   ];
 }
 
-Topping.prototype.getPrice = function (size) {
+Topping.prototype.setPrice = function (size) {
   const price = this.prices.find((sizePrice) => sizePrice.size == size);
   if (price) {
-    return price.price;
+    this.price = price.price;
   } else {
-    return 0;
+    this.price = 0;
   }
 };
 
@@ -86,12 +121,12 @@ const burgerSizes = [
 ];
 
 const burgers = [
-  new Burger("Beef Burger", "./images/burger1.png", true),
-  new Burger("Spicy Tandoori", "./images/burger2.png"),
-  new Burger("Cheese Burger", "./images/burger3.png"),
-  new Burger("Buffalo Burger", "./images/burger4.png"),
-  new Burger("BBQ Chcken", "./images/burger5.png"),
-  new Burger("Crispy Chicken", "./images/burger6.png"),
+  new Burger(1, "Beef Burger", "./images/burger1.png", true),
+  new Burger(2, "Spicy Tandoori", "./images/burger2.png"),
+  new Burger(3, "Cheese Burger", "./images/burger3.png"),
+  new Burger(4, "Buffalo Burger", "./images/burger4.png"),
+  new Burger(5, "BBQ Chcken", "./images/burger5.png"),
+  new Burger(6, "Crispy Chicken", "./images/burger6.png"),
 ];
 
 /**
@@ -99,6 +134,8 @@ const burgers = [
  */
 
 $(function () {
+  let selectedBurger;
+
   // append burgers to menu
   $("#menu .menu").html("");
   burgers.forEach((burger) => {
@@ -124,7 +161,9 @@ $(function () {
             <div class="col-6 price fw-bold"></div>
             <div class="col-6 d-flex">
                 <span class="add-to-cart d-flex align-items-center ms-auto">
-                    <button class="btn" title="add to cart" data-bs-toggle="modal" data-bs-target="#crust-toppings-modal">
+                    <button class="btn open-modal" data-burger="${
+                      burger.id
+                    }" title="add to cart">
                         <img src="./images/shopping-cart.png" alt="cart">
                     </button>
                 </span>
@@ -132,6 +171,12 @@ $(function () {
         </div>
     </div>
 </div>`);
+  });
+
+  $(".open-modal").on("click", function () {
+    const selectedBurgerId = $(this).data("burger");
+    selectedBurger = burgers.find(({ id }) => id == selectedBurgerId);
+    $("#crust-toppings-modal").modal("show");
   });
 
   // append burger sizes
@@ -182,6 +227,8 @@ $(function () {
     $("input.burger-size").prop("checked", false);
     const sizeCheckbox = $(this).prev();
     sizeCheckbox.prop("checked", !sizeCheckbox.prop("checked"));
+    selectedBurger.setSize(sizeCheckbox.val());
+    appendToppings(selectedBurger.size.size);
   });
 
   // select burger crust
@@ -190,6 +237,31 @@ $(function () {
     $("input.burger-crust").prop("checked", false);
     const crustCheckbox = $(this).prev();
     crustCheckbox.prop("checked", !crustCheckbox.prop("checked"));
+    selectedBurger.setCrust(crustCheckbox.val());
+  });
+
+  // select burger toppings
+  $("body").on("click", ".topping-card", function () {
+    // uncheck all sizes first
+    // $("input.topping-crust").prop("checked", false);
+    const toppingCheckbox = $(this).prev();
+    toppingCheckbox.prop("checked", !toppingCheckbox.prop("checked"));
+    const selectedToppings = [];
+    $("input.burger-topping:checked").each(() => {
+      selectedToppings.push(
+        toppings.find(({ id }) => id == $(this).prev().val())
+      );
+    });
+    selectedBurger.setToppings(selectedToppings);
+  });
+
+  // add to cart
+  $(".btn-add-to-cart").on("click", function () {
+      if (selectedBurger.size && selectedBurger.crust) {
+          console.log(selectedBurger);
+      }else{
+          alert("Please choose the size and crust");
+      }
   });
 
   //   toggle header background on scroll
@@ -202,3 +274,27 @@ $(function () {
     }
   });
 });
+
+function appendToppings(size) {
+  $(".burger--toppings").removeClass("d-none");
+  $(".toppings").html("");
+  toppings.forEach((topping) => {
+    topping.setPrice(size);
+    $(".toppings").append(`<div class="col-md-6 col-lg-3 col-6 mb-3 mb-md-0">
+          <input id="topping-${topping.id}" value="${topping.id}" hidden type="radio" class="burger-topping">
+          <div class="size topping-card p-1">
+              <div class="text-center pt-2">
+                  <img src="./images/ion_fast-food.png" alt="" height="30" class="img-fluid">
+              </div>
+              <div class="row pt-3 px-2">
+                  <div class="col-12 text-start">
+                      <small class="crusttext-capitalize">${topping.name}</small>
+                  </div>
+                  <div class="col-12 fw-bold text-start">
+                      Ksh. ${topping.price}
+                  </div>
+              </div>
+          </div>
+        </div>`);
+  });
+}

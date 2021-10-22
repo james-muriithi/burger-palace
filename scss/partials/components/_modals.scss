@@ -1,5 +1,6 @@
 /* Modals */
 #crust-toppings-modal {
+    .toppings,
     .crusts,
     .sizes {
         input[type="radio"]:checked + .size {
