@@ -135,14 +135,13 @@ $(function () {
   });
 
   // append burger sizes
-
   $(".sizes").html("");
   burgerSizes.forEach(({ size, price }) => {
     $(".sizes").append(`<div class="col-md-6 col-lg-3 col-6 mb-3 mb-md-0">
-      <input id="size-small" value="small" hidden type="radio" class="burger-size">
+      <input id="size-${size}" value="${size}" hidden type="radio" class="burger-size">
       <div class="size size-card p-1">
           <div class="text-center pt-2">
-              <img src="./images/ion_fast-food.png" alt="" height="30" class="img-fluid">
+              <img src="./images/burger.png" alt="" height="30" class="img-fluid">
           </div>
           <div class="row pt-3">
               <div class="col-5 text-center">
@@ -156,12 +155,41 @@ $(function () {
     </div>`);
   });
 
+  // append burger crusts
+  $(".crusts").html("");
+  crusts.forEach(({ id, name, price }) => {
+    $(".crusts").append(`<div class="col-md-6 col-lg-3 col-6 mb-3 mb-md-0">
+      <input id="crust-${id}" value="${id}" hidden type="radio" class="burger-crust">
+      <div class="size crust-card p-1">
+          <div class="text-center pt-2">
+              <img src="./images/crust.png" alt="" height="30" class="img-fluid">
+          </div>
+          <div class="row pt-3 px-2">
+              <div class="col-12 text-start">
+                  <small class="text-capitalize">${name}</small>
+              </div>
+              <div class="col-12 fw-bold text-start">
+                  Ksh. ${price}
+              </div>
+          </div>
+      </div>
+    </div>`);
+  });
+
   // select burger size
   $("body").on("click", ".size-card", function () {
     // uncheck all sizes first
     $("input.burger-size").prop("checked", false);
     const sizeCheckbox = $(this).prev();
     sizeCheckbox.prop("checked", !sizeCheckbox.prop("checked"));
+  });
+
+  // select burger crust
+  $("body").on("click", ".crust-card", function () {
+    // uncheck all sizes first
+    $("input.burger-crust").prop("checked", false);
+    const crustCheckbox = $(this).prev();
+    crustCheckbox.prop("checked", !crustCheckbox.prop("checked"));
   });
 
   //   toggle header background on scroll

@@ -1,6 +1,8 @@
+/* Modals */
 #crust-toppings-modal {
+    .crusts,
     .sizes {
-        .burger-size:checked + .size {
+        input[type="radio"]:checked + .size {
             background-color: $add-to-cart;
             // &.size-card {
             //     // box-shadow: none;

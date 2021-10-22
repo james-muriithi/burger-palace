@@ -266,9 +266,12 @@ footer .lower-section {
     cursor: pointer;
     height: 15px; }
 
-#crust-toppings-modal .sizes .burger-size:checked + .size {
+/* Modals */
+#crust-toppings-modal .crusts input[type="radio"]:checked + .size,
+#crust-toppings-modal .sizes input[type="radio"]:checked + .size {
   background-color: #E1EBE6; }
 
+#crust-toppings-modal .crusts .size,
 #crust-toppings-modal .sizes .size {
   cursor: pointer;
   border-radius: 10px;
@@ -276,16 +279,20 @@ footer .lower-section {
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease; }
+  #crust-toppings-modal .crusts .size.size-card,
   #crust-toppings-modal .sizes .size.size-card {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; }
   @media screen and (max-width: 992px) {
+    #crust-toppings-modal .crusts .size,
     #crust-toppings-modal .sizes .size {
       font-size: 13px !important; } }
 
+#crust-toppings-modal .crusts img,
 #crust-toppings-modal .sizes img {
   height: 100px;
   width: 100px; }
   @media screen and (max-width: 768px) {
+    #crust-toppings-modal .crusts img,
     #crust-toppings-modal .sizes img {
       height: 50px;
       width: 50px; } }
