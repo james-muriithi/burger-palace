@@ -1,14 +1,66 @@
 /**
  * Business Logic
  */
-function Burger(name, image, newBurger=false) {
+function Burger(name, image, newBurger = false) {
   this.name = name;
   this.price = 0;
   this.image = image;
   this.toppings = [];
   this.crust = null;
-  this.newBurger =  newBurger;
+  this.newBurger = newBurger;
 }
+
+const toppings = [
+  {
+    id: 1,
+    name: "Bacon",
+  },
+  {
+    id: 2,
+    name: "Cheese",
+  },
+  {
+    id: 3,
+    name: "Mushrooms",
+  },
+  {
+    id: 4,
+    name: "Avocado",
+  },
+];
+
+const crusts = [
+  {
+    id: 1,
+    name: "Cheese Burst",
+    price: 100,
+  },
+  {
+    id: 2,
+    name: "Wheat Thin Crust",
+    price: 150,
+  },
+  {
+    id: 3,
+    name: "New Hand Tossed",
+    price: 110,
+  },
+];
+
+const burgerSizes = [
+  {
+    size: "small",
+    price: 200,
+  },
+  {
+    size: "medium",
+    price: 400,
+  },
+  {
+    size: "large",
+    price: 600,
+  },
+];
 
 const burgers = [
   new Burger("Beef Burger", "./images/burger1.png", true),
@@ -25,12 +77,12 @@ const burgers = [
 
 $(function () {
   // append burgers to menu
-  $("#menu .menu").html('');
+  $("#menu .menu").html("");
   burgers.forEach((burger) => {
     $("#menu .menu")
       .append(`<div class="col-sm-6 col-md-6 col-xl-4 col-xxl-3 mb-5">
     <div class="menu-card p-3 p-lg-4">
-        <div class="ribbon text-center ${burger.newBurger ? '': 'd-none'}">
+        <div class="ribbon text-center ${burger.newBurger ? "" : "d-none"}">
             New
         </div>
         <div class="text-center">
