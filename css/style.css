@@ -283,8 +283,12 @@ footer .lower-section {
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease; }
-  #crust-toppings-modal .toppings .size.size-card,
+  #crust-toppings-modal .toppings .size.crust-card, #crust-toppings-modal .toppings .size.topping-card, #crust-toppings-modal .toppings .size.size-card,
+  #crust-toppings-modal .crusts .size.crust-card,
+  #crust-toppings-modal .crusts .size.topping-card,
   #crust-toppings-modal .crusts .size.size-card,
+  #crust-toppings-modal .sizes .size.crust-card,
+  #crust-toppings-modal .sizes .size.topping-card,
   #crust-toppings-modal .sizes .size.size-card {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; }
   @media screen and (max-width: 992px) {

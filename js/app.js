@@ -155,7 +155,14 @@ Cart.prototype.addItem = function (burger) {
     let item = { ...burger, quantity: 1 };
     this.items.push(item);
   }
-  console.log(this.items);
+  this.calculateTotal();
+  console.log(this);
+};
+
+Cart.prototype.calculateTotal = function () {
+  this.total = this.items.reduce((prevItem, currentItem) => {
+    return prevItem + currentItem.price * currentItem.quantity;
+  }, 0);
 };
 
 Cart.prototype.isSameItem = function (item1, item2) {
@@ -214,6 +221,11 @@ $(function () {
   $(".open-modal").on("click", function () {
     const selectedBurgerId = $(this).data("burger");
     selectedBurger = burgers.find(({ id }) => id == selectedBurgerId);
+    $("input.burger-size, input.burger-crust, input.burger-topping").prop(
+      "checked",
+      false
+    );
+
     $("#crust-toppings-modal").modal("show");
   });
 
@@ -324,6 +336,10 @@ function updateCartCount(cartCount = 0) {
   $(".cart-counter").text(cartCount);
 }
 
+function updateCartTotal(total = 0) {
+  $(".cart-total").text(total);
+}
+
 function updateCart(cart) {
   $(".shopping-cart-items").html("");
   cart.items.forEach((item) => {
@@ -347,6 +363,7 @@ function updateCart(cart) {
   });
 
   updateCartCount(cart.items.length);
+  updateCartTotal(cart.total);
 }
 
 function appendToppings(size) {
