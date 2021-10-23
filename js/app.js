@@ -234,9 +234,9 @@ $(function () {
   });
 
   // append burger sizes
-  $(".sizes").html("");
+  $("#crust-toppings-modal .sizes").html("");
   burgerSizes.forEach(({ size, price }) => {
-    $(".sizes").append(`<div class="col-md-6 col-lg-3 col-6 mb-3 mb-md-0">
+    $("#crust-toppings-modal .sizes").append(`<div class="col-md-6 col-lg-3 col-6 mb-3 mb-md-0">
       <input id="size-${size}" value="${size}" hidden type="radio" class="burger-size">
       <div class="size size-card p-1">
           <div class="text-center pt-2">

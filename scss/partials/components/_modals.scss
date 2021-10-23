@@ -5,15 +5,13 @@
     .sizes {
         input[type="radio"]:checked + .size {
             background-color: $add-to-cart;
-            // &.size-card {
-            //     // box-shadow: none;
-            // }
         }
         .size {
             cursor: pointer;
             border-radius: 10px;
             @include transition;
             &.crust-card,
+            &.delivery-card,
             &.topping-card,
             &.size-card {
                 box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
@@ -29,6 +27,16 @@
                 height: 50px;
                 width: 50px;
             }
+        }
+    }
+}
+
+#delivery-modal{
+    @extend  #crust-toppings-modal;
+    .sizes{
+        img {
+            height: 80px;
+            width: 80px;
         }
     }
 }
