@@ -137,7 +137,9 @@ const burgers = [
 function Cart() {
   this.items = [];
   this.total = 0;
-  this.grand_total = 0;
+  this.grandTotal = 0;
+  this.deliveryFee = 150;
+  this.deliveryMethod = 0;
 }
 
 Cart.prototype.addItem = function (burger) {
@@ -163,10 +165,38 @@ Cart.prototype.removeItem = function (itemIndex) {
   this.calculateTotal();
 };
 
+Cart.prototype.setDeliveryMethod = function (method) {
+  this.deliveryMethod = method;
+};
+
+Cart.prototype.calculateGrandTotal = function () {
+  this.calculateTotal();
+  this.grandTotal = this.total;
+  if (this.deliveryMethod != 0) {
+    this.grandTotal += this.deliveryFee;
+  }
+
+  return this.grandTotal;
+};
+
 Cart.prototype.calculateTotal = function () {
   this.total = this.items.reduce((prevItem, currentItem) => {
     return prevItem + currentItem.price * currentItem.quantity;
   }, 0);
+};
+
+Cart.prototype.setCustomerDetails = function ({
+  fullName,
+  contact,
+  location = null,
+  info = null,
+}) {
+  this.customerDetails = {
+    fullName,
+    contact,
+    location,
+    info,
+  };
 };
 
 Cart.prototype.isSameItem = function (item1, item2) {
@@ -236,7 +266,8 @@ $(function () {
   // append burger sizes
   $("#crust-toppings-modal .sizes").html("");
   burgerSizes.forEach(({ size, price }) => {
-    $("#crust-toppings-modal .sizes").append(`<div class="col-md-6 col-lg-3 col-6 mb-3 mb-md-0">
+    $("#crust-toppings-modal .sizes")
+      .append(`<div class="col-md-6 col-lg-3 col-6 mb-3 mb-md-0">
       <input id="size-${size}" value="${size}" hidden type="radio" class="burger-size">
       <div class="size size-card p-1">
           <div class="text-center pt-2">
@@ -307,6 +338,42 @@ $(function () {
     selectedBurger.setToppings(selectedToppings);
   });
 
+  // select delivery
+  $("body").on("click", ".delivery-card", function () {
+    // uncheck all sizes first
+    $("input.delivery").prop("checked", false);
+    const deliveryCheckbox = $(this).prev();
+    deliveryCheckbox.prop("checked", !deliveryCheckbox.prop("checked"));
+    if (deliveryCheckbox.val() == 1) {
+      $(".delivery-info")
+        .removeClass("d-none")
+        .find("input")
+        .prop("required", true);
+    } else {
+      $(".delivery-info")
+        .addClass("d-none")
+        .find("input")
+        .prop("required", false);
+    }
+    cart.setDeliveryMethod(deliveryCheckbox.val());
+  });
+
+  //   customer details proceed
+
+  $("#personal-details-form").on("submit", function (e) {
+    e.preventDefault();
+    const fullName = $("input.fullName").val();
+    const contact = $("input.contact").val();
+    const location = $("input.location").val();
+    const info = $("input.info").val();
+
+    cart.setCustomerDetails({ fullName, contact, location, info });
+    cart.calculateGrandTotal();
+    updateOrderConfirmedModal(cart);
+    $("#delivery-modal").modal("hide");
+    $("#order-success-modal").modal("show");
+  });
+
   // add to cart
   $(".btn-add-to-cart").on("click", function () {
     if (selectedBurger.size && selectedBurger.crust) {
@@ -321,7 +388,6 @@ $(function () {
   $("body").on("click", ".btn-remove-from-cart", function () {
     cart.removeItem($(this).data("item"));
     updateCart(cart);
-    console.log(cart);
   });
 
   // toggle show cart
@@ -416,4 +482,151 @@ function appendToppings(size) {
           </div>
         </div>`);
   });
+}
+
+function updateOrderConfirmedModal(cart) {
+  $(".order-details-container")
+    .html(`<div class="row d-flex justify-content-center">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="text-center logo p-2 px-5"> 
+                <img src="./images/order-delivery.png" alt="order Confirmed" height="128" width="112">
+            </div>
+            <div class="invoice p-5">
+                <h5>Your order has been Confirmed!</h5>
+                <span class="font-weight-bold d-block mt-4 mb-2">Hello, ${
+                  cart.customerDetails.fullName
+                }</span>
+                <span>You order has been placed successfully${
+                  cart.deliveryMethod == 1
+                    ? " and will be delivered to your location"
+                    : ""
+                }!</span>
+                <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="py-2"> <span class="d-block text-muted">Order
+                                            Date</span>
+                                        <span>${new Date().toDateString()}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="py-2"> <span class="d-block text-muted">Order
+                                            No</span>
+                                        <span>MT12332345</span>
+                                    </div>
+                                </td>
+                                ${
+                                  cart.deliveryMethod == 1
+                                    ? '<td><div class="py-2"> <span class="d-block text-muted">Delivery</span>\
+                                    <span>' +
+                                      cart.customerDetails.location +
+                                      "</span>\
+                                </div></td>"
+                                    : ""
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="product border-bottom table-responsive">
+                    <table class="table table-borderless">
+                        <tbody>
+                            ${generateOrderDetails(cart.items)}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row d-flex justify-content-end">
+                    <div class="col-md-5">
+                        <table class="table table-borderless">
+                            <tbody class="totals">
+                                <tr>
+                                    <td>
+                                        <div class="text-left"> <span
+                                                class="text-muted">Subtotal</span> </div>
+                                    </td>
+                                    <td>
+                                        <div class="text-right"> <span>Ksh. ${
+                                          cart.total
+                                        }</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="text-left"> <span
+                                                class="text-muted">Shipping Fee</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="text-right"> <span>Ksh. ${
+                                          cart.deliveryMethod == 1
+                                            ? cart.deliveryFee
+                                            : 0
+                                        }</span> </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="text-left"> <span
+                                                class="text-muted">Discount</span> </div>
+                                    </td>
+                                    <td>
+                                        <div class="text-right"> <span class="text-success">Ksh.
+                                                0</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="border-top border-bottom">
+                                    <td>
+                                        <div class="text-left"> <span
+                                                class="font-weight-bold">Total</span> </div>
+                                    </td>
+                                    <td>
+                                        <div class="text-right"> <span
+                                                class="font-weight-bold">Ksh. ${
+                                                  cart.grandTotal
+                                                }</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <p class="font-weight-bold mb-0">Thanks for shopping with us!</p>
+            </div>
+        </div>
+    </div>
+</div>`);
+}
+
+function generateOrderDetails(orderItems) {
+  let itemsMarkup = ``;
+  orderItems.forEach((item) => {
+    itemsMarkup += `<tr>
+        <td width="20%"> <img src="${item.image}"
+                width="90"> </td>
+        <td width="60%"> <span class="font-weight-bold">${item.name} (${
+      item.size.size
+    })</span>
+            <div class="product-qty"> <span class="d-block">Quantity:
+            ${item.quantity}</span>
+                <span>Crust:${item.crust.name}</span> <br>
+                <span>Toppings:${item.toppings
+                  .map((t) => t.name)
+                  .join(", ")}</span>
+            </div>
+        </td>
+        <td width="20%">
+            <div class="text-right"> <span class="font-weight-bold">Ksh.
+            ${item.price}</span>
+            </div>
+        </td>
+    </tr>`;
+  });
+
+  return itemsMarkup;
 }

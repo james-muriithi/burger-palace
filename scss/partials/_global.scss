@@ -61,3 +61,10 @@ input {
 .btn--primary {
     background-color: map-get($colors, "primary");
 }
+.product-qty span {
+    font-size: 12px;
+    color: map-get($colors, "secondary");
+}
+.totals tr td {
+    font-size: 13px;
+}

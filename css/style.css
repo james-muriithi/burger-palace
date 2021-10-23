@@ -33,6 +33,13 @@ input:active, input:focus {
 .btn--primary {
   background-color: #ffc12b; }
 
+.product-qty span {
+  font-size: 12px;
+  color: #fa9529; }
+
+.totals tr td {
+  font-size: 13px; }
+
 /* Navbar */
 .cart-tyles, .cart, .navbar .nav-item:last-child {
   display: flex;
