@@ -58,6 +58,13 @@
         .item-quantity {
             color: darken($white, 60%);
         }
+        .btn-remove-from-cart {
+            text-align: center;
+            img{
+                height: 15px;
+                width: 15px;
+            }
+        }
     }
     &:after {
         bottom: 100%;

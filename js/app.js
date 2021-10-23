@@ -156,7 +156,11 @@ Cart.prototype.addItem = function (burger) {
     this.items.push(item);
   }
   this.calculateTotal();
-  console.log(this);
+};
+
+Cart.prototype.removeItem = function (itemIndex) {
+  this.items = this.items.filter((_, index) => index != itemIndex);
+  this.calculateTotal();
 };
 
 Cart.prototype.calculateTotal = function () {
@@ -313,6 +317,13 @@ $(function () {
     }
   });
 
+  // remove from cart
+  $("body").on("click", ".btn-remove-from-cart", function () {
+    cart.removeItem($(this).data("item"));
+    updateCart(cart);
+    console.log(cart);
+  });
+
   // toggle show cart
   $(".cart").on("click", function () {
     $(".shopping-cart").toggleClass("d-none");
@@ -341,26 +352,43 @@ function updateCartTotal(total = 0) {
 }
 
 function updateCart(cart) {
-  $(".shopping-cart-items").html("");
-  cart.items.forEach((item) => {
-    $(".shopping-cart-items")
-      .append(`<li class="clearfix row align-items-center">
-        <div class="col-4">
-            <img src="${item.image}" alt="${item.name}" />
-        </div>
-        <div class="col-8 px-0">
-            <span class="item-name fw-bold">${item.name} (${
-      item.size.size
-    })</span>
-            <div><small>Crust: ${item.crust.name}</small></div>
-            <div><small>Toppings: ${item.toppings
-              .map((t) => t.name)
-              .join(", ")}</small></div>
-            <span class="item-price">Ksh ${item.price}</span> X
-            <span class="item-quantity">${item.quantity}</span>
-        </div>
-    </li>`);
-  });
+  if (cart.items.length > 0) {
+    $(".shopping-cart-items").html("");
+    $(".btn-checkout").prop("disabled", false);
+
+    cart.items.forEach((item, itemIndex) => {
+      $(".shopping-cart-items")
+        .append(`<li class="clearfix row align-items-center">
+            <div class="col-4">
+                <img src="${item.image}" alt="${item.name}" />
+            </div>
+            <div class="col-8 px-0">
+                <span class="item-name fw-bold">${item.name} (${
+        item.size.size
+      })</span>
+                <div><small>Crust: ${item.crust.name}</small></div>
+                <div><small>Toppings: ${item.toppings
+                  .map((t) => t.name)
+                  .join(", ")}</small></div>
+                <span class="item-price">Ksh ${item.price}</span> X
+                <span class="item-quantity">
+                    ${item.quantity}
+                </span>
+                <span class="ms-auto">
+                    <button class="btn btn-sm btn-remove-from-cart" data-item="${itemIndex}">
+                        <img src="./images/dustbin.png" alt="delete" height="15" width="15"></img>
+                    </button>
+                </span>
+            </div>
+        </li>`);
+    });
+  } else {
+    $(".btn-checkout").prop("disabled", true);
+
+    $(".shopping-cart-items").html(`<div class="d-flex justify-content-center">
+        <img src="./images/empty-cart.png" alt="empty cart" class="img-fluid" />
+        </div>`);
+  }
 
   updateCartCount(cart.items.length);
   updateCartTotal(cart.total);

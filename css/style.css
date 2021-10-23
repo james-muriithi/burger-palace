@@ -353,6 +353,11 @@ footer .lower-section {
       margin-right: 8px; }
     .shopping-cart .shopping-cart-items .item-quantity {
       color: #666666; }
+    .shopping-cart .shopping-cart-items .btn-remove-from-cart {
+      text-align: center; }
+      .shopping-cart .shopping-cart-items .btn-remove-from-cart img {
+        height: 15px;
+        width: 15px; }
   .shopping-cart:after {
     bottom: 100%;
     left: 89%;
