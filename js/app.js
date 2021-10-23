@@ -185,6 +185,13 @@ Cart.prototype.calculateTotal = function () {
   }, 0);
 };
 
+Cart.prototype.clearCart = function () {
+  this.items = [];
+  this.deliveryMethod = 0;
+  this.customerDetails = {};
+  this.calculateGrandTotal();
+};
+
 Cart.prototype.setCustomerDetails = function ({
   fullName,
   contact,
@@ -371,6 +378,11 @@ $(function () {
     cart.calculateGrandTotal();
     updateOrderConfirmedModal(cart);
     $("#delivery-modal").modal("hide");
+    // clear cart
+    cart.clearCart();
+    updateCart(cart);
+    $("#personal-details-form")[0].reset();
+
     $("#order-success-modal").modal("show");
   });
 
