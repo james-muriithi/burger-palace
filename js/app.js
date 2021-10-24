@@ -148,11 +148,15 @@ Cart.prototype.addItem = function (burger) {
       return this.isSameItem(item, burger);
     })
   ) {
-    this.items.map((item) => {
-      if (item.id == burger.id) {
-        item.quantity += 1;
+    let itemIndex;
+    this.items.some((item, index) => {
+      if (this.isSameItem(item, burger)) {
+        itemIndex = index;
+        return;
       }
+      return;
     });
+    this.items[itemIndex].quantity += 1;
   } else {
     let item = { ...burger, quantity: 1 };
     this.items.push(item);
