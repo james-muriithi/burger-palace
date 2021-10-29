@@ -19,7 +19,7 @@ We cook & deliver the tastiest burgers  right away to your designated location.
 1. Work on business logic (JS)  ✅ 
 
 ## Design
-[Here](https://www.figma.com/proto/6zvFPf6AkHpREI1ArA259k/Burger-Palace?node-id=2%3A2&scaling=min-zoom) is the link to the design preview.
+[Here](https://www.figma.com/proto/6zvFPf6AkHpREI1ArA259k/Burger-Palace?node-id=0%3A1) is the link to the design preview.
 
 ## Screenshot
 ![Screenshot](./screenshots/screenshot.png)
